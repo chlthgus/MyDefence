@@ -34,19 +34,42 @@ namespace MyDefence
             if(distance <=0.1f)
             {
 
-              //  Debug.Log("µµÂø");
+                //  Debug.Log("µµÂø");
 
                 //´ÙÀ½ Å¸°Ù ¼ÂÆÃ
-                targetPosition = WayPoints.wayPoints[1].position;
+                GetNextTargetPostion();
 
+                //targetPosition = WayPoints.wayPoints[1].position;
+                //wayPointIndex++;
+                //targetPosition = WayPoints.wayPoints[wayPointIndex].position;
 
-                /*
-                if()
+               //float
+                if(distance <= 0.1f)
                 {
-                    targetPosition = new Vector3(-7.48f, 1f, -10.5f);
-                }
-                */
+                    //´ÙÀ½ Å¸°Ù ¼ÂÆÃ
+                    GetNextTargetPostion();
 
+                    // targetPosition = new Vector3(-7.48f, 1f, -10.5f);
+                }
+                
+            }
+
+            void GetNextTargetPostion()
+            {
+
+                if(wayPointIndex ==WayPoints.wayPoints.Length - 1)
+                {
+                    Debug.Log("Á¾Á¡µµÂø");
+                    Destroy(this.gameObject);
+
+                }
+
+
+
+               // wayPointIndex++;
+               // targetPosition = WayPoints.wayPoints[wayPointIndex].position;
+
+                //Debug.Log($" wayPointIndex: {wayPointIndex}");
             }
         }
     }
