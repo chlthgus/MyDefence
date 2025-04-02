@@ -2,48 +2,44 @@ using UnityEngine;
 
 public class EventTest : MonoBehaviour
 {
-    public void Awake()
+    private void Awake()
     {
-        Debug.Log("[1] Awake ½ÇÇà");
+        Debug.Log("[1] Awake ì‹¤í–‰");  //1íšŒë§Œ ì‹¤í–‰
     }
+
     private void OnEnable()
     {
-        Debug.Log("[6-1] OnEnable ½ÇÇà");  // (°ÔÀÓ¿ÀºêÁ§Æ®°¡ È°¼ºÈ­µÉ¶§) 1È¸¸¸ ½ÇÇà
+        Debug.Log("[6-1] OnEnable ì‹¤í–‰");  //(í™œì„±í™”ë ë•Œ) 1íšŒ ì‹¤í–‰
     }
 
-
-
-        private void Start()
+    private void Start()
     {
-        Debug.Log("[2] Start ½ÇÇà");  // (È°¼ºÈ­µÉ¶§)1È¸¸¸ ½ÇÇà
+        Debug.Log("[2] Start ì‹¤í–‰");  //1íšŒë§Œ ì‹¤í–‰
     }
 
     private void FixedUpdate()
     {
-        Debug.Log("[3] FixedUpdate ½ÇÇà");    //1ÃÊ¿¡ 50ÇÁ·¹ÀÓ °íÁ¤
+        Debug.Log("[3] FixedUpdate ì‹¤í–‰");    //1ì´ˆì— 50í”„ë ˆì„ ê³ ì •
     }
 
     private void Update()
     {
-        Debug.Log("[4] Update ½ÇÇà");     //¸Å ÇÁ·¹ÀÓ¸¶´Ù È£Ãâ
+        Debug.Log("[4] Update ì‹¤í–‰");         //ë§¤ í”„ë ˆì„ë§ˆë‹¤ í˜¸ì¶œ
     }
 
     private void LateUpdate()
     {
-        Debug.Log("[5] LateUpdate ½ÇÇà");     //Update() ½ÇÇà µÚ¿¡ ¹Ù·Î µû¶ó¼­ ½ÇÇà
+        Debug.Log("[5] LateUpdate ì‹¤í–‰");     //Update() ì‹¤í–‰ ë’¤ì— ë°”ë¡œ ë”°ë¼ì„œ ì‹¤í–‰
     }
 
     private void OnDisable()
     {
-        Debug.Log("[6-2] OnDisable ½ÇÇà");    //(ºñ È°¼ºÈ­µÉ¶§) 1È¸ ½ÇÇà
+        Debug.Log("[6-2] OnDisable ì‹¤í–‰");  //(ë¹„ í™œì„±í™”ë ë•Œ) 1íšŒ ì‹¤í–‰
     }
-
 
     private void OnDestroy()
     {
-        Debug.Log("[7] OnDestroy ½ÇÇà");    // 1È¸ ½ÇÇà
+        Debug.Log("[7] OnDestroy ì‹¤í–‰");  //1íšŒë§Œ ì‹¤í–‰
     }
-
-
 
 }

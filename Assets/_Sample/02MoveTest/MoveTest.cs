@@ -4,107 +4,105 @@ namespace Sample
 {
     public class MoveTest : MonoBehaviour
     {
-
-        //ÇÊµå
-        //ÀÌµ¿¼Óµµ
+        //í•„ë“œ
+        //ì´ë™ ì†ë„
         private float speed = 5f;
-        
-        
-        //ÀÌµ¿ ¸ñÇ¥ ÁöÁ¡
 
-
-
-        Vector3 targetposition = new Vector3(7f,1f,8f);
-
-
+        //ì´ë™ ëª©í‘œ ì§€ì 
+        Vector3 targetPosition = new Vector3(7f, 1f, 8f);
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            //this.transform.position = new Vector3(7f,1f,8f);
-
-            this.transform.position = targetposition;
-            Debug.Log(this.transform.position);
+            // this.transform
+            // :MoveTest í´ë˜ìŠ¤ê°€ ë¶™ì–´ìˆëŠ” ê²Œì„ì˜¤ë¸Œì íŠ¸ì˜ Transform ì¸ìŠ¤í„´ìŠ¤
+            //this.transform.position = new Vector3(7f, 1f, 8f);
+            //this.transform.position = targetPosition;
+            //Debug.Log(this.transform.position);
         }
 
         // Update is called once per frame
         void Update()
         {
-            //ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡¸¦ ¾ÕÀ¸·Î ÀÌµ¿ÇÏ¶ó
+            //í”Œë ˆì´ì–´ì˜ ìœ„ì¹˜ë¥¼ ì•ìœ¼ë¡œ ì´ë™í•˜ë¼
+            //this.transform.position.z = this.transform.position.z + 1;
+            //ì•, ë’¤, ì¢Œ, ìš°, ìœ„, ì•„ë˜
+            //this.transform.position = this.transform.position + new Vector3(0f, 0f, 1f);
+            //this.transform.position = this.transform.position + new Vector3(0f, 0f, -1f);
+            //this.transform.position = this.transform.position + new Vector3(-1f, 0f, 0f);
+            //this.transform.position = this.transform.position + new Vector3(1f, 0f, 0f);
+            //this.transform.position = this.transform.position + new Vector3(0f, 1f, 0f);
+            //this.transform.position = this.transform.position + new Vector3(0f, -1f, 0f);
 
-            //this.transform.position = this.transform.position + new Vector3(0f,0f,1f);
+            //this.transform.position += Vector3.forward;
+            //this.transform.position += Vector3.right;
 
-            //µÚ ÁÂ ¿ì À§ ¾Æ·¡
+            //ì†ë„
+            //ì• ë°©í–¥ìœ¼ë¡œ 1ì´ˆì— 1unit ë§Œí¼ ì´ë™
+            //this.transform.position += new Vector3(0f, 0f, 1f) * Time.deltaTime * 1;
+            //ì• ë°©í–¥ìœ¼ë¡œ 1ì´ˆì— speed(5)unit ë§Œí¼ ì´ë™
+            //this.transform.position += Vector3.forward * Time.deltaTime * speed;
 
-            //  this.transform.position += Vector3.forward;
-            // this.transform.position += Vector3.right;
+            //Translate : ì´ë™ í•¨ìˆ˜
+            //ë°©í–¥ : ì•ë°©í–¥
+            //Time.deltaTime : ë™ì¼í•œ ì‹œê°„ì— ë™ì¼í•œ ê±°ë¦¬ë¥¼ ì´ë™í•˜ê²Œ í•´ì¤€ë‹¤
+            //speed : ì´ë™ì†ë„ - ì´ˆë‹¹ ì´ë™í•˜ëŠ” ê±°ë¦¬
+            // Vector3 * float * float => Vector3
+            //this.transform.Translate(Vector3.right * Time.deltaTime * speed);
 
-            //¼Óµµ
-            //¾Õ ¹æÇâÀ¸·Î 1ÃÊ¿¡ 1unit ¸¸Å­ ÀÌµ¿
-            //  this.transform.position += new Vector3(0f, 0f, 1f) * Time.deltaTime;
+            //ì´ë™ ë°©í–¥ êµ¬í•˜ê¸° : (ëª©í‘œìœ„ì¹˜ - í˜„ì¬ìœ„ì¹˜),(ëª©í‘œìœ„ì¹˜ - í˜„ì¬ìœ„ì¹˜).normalized
+            // dir.magnitude : ë²¡í„°ì˜ í¬ê¸°, ê¸¸ì´
+            // dir.normalized : ê¸¸ì´ê°€ 1ì¸ ë²¡í„°, ì •ê·œí™”ëœ ë²¡í„°, ë‹¨ìœ„ë²¡í„°
+            //Vector3 dir = targetPosition - this.transform.position;
+            //transform.Translate(dir.normalized * Time.deltaTime * speed);
 
-            //¾Õ ¹æÇâÀ¸·Î 1ÃÊ¿¡ speed(5)unit ¸¸Å­ ÀÌµ¿
-            // this.transform.position += Vector3.forward * Time.deltaTime * speed;
-
-            this.transform.Translate(Vector3.forward * Time.deltaTime * speed);
-
-            //Translate : ÀÌµ¿ ÇÔ¼ö
-            //¹æÇâ : ¾Õ¹æÇâ
-            //Time.deltaTime : µ¿ÀÏÇÑ ½Ã°£¿¡ µ¿ÀÏÇÑ °Å¸®¸¦ ÀÌµ¿ÇÏ°Ô ÇØÁØ´Ù
-            //speed : ÀÌµ¿¼Óµµ - ÃÊ´ç ÀÌµ¿ÇÏ´Â °Å¸®
-            //Vector3 * float * float => Vector3
-            //this.transform.Translate(Vector3.right * Time.deltaTime * speed)
-
-            //ÀÌµ¿ ¹æÇâ ±¸ÇÏ±â : (¸ñÇ¥À§Ä¡ - ÇöÀçÀ§Ä¡)
-            //dir.magnitude : º¤ÅÍÀÇ Å©±â, ±æÀÌ
-            //dir.normalized : ±æÀÌ°¡ 1ÀÎ º¤ÅÍ, Á¤±ÔÈ­µÈ º¤ÅÍ, ´ÜÀ§º¤ÅÍ
-            // Vector3 dir = targetposition - this.transform.position;
-            // transform.Translate(dir.normalized * Time.deltaTime * speed);
-
-           // transform.Translate(Vector3.forward * Time.deltaTime *speed,Space.World);
-           transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.Self);
-
+            //Space.World, Space.Self
+            //transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
+            transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.Self);
 
         }
     }
 }
 
 /*
- nÇÁ·¹ÀÓ : ÃÊ´çn¹ø ½ÇÇàÇÏ±â(º¸¿©ÁÖ±â)
-20ÇÁ·¹ÀÓ : 1ÇÁ·¹ÀÓ º¸¿©ÁÖ´Âµ¥ 0.05ÃÊ °É¸°´Ù
-FPS : 1ÃÊ¿¡ (½ÇÇà) º¸¿©ÁÖ´Âµ¥ ÇÁ·¹ÀÓ °¹¼ö
+1. ì•, ë’¤, ì¢Œ, ìš°ë¡œ ì´ë™í•˜ê¸°
+2. 5ì˜ ì†ë„ë¡œ ì´ë™í•˜ê¸°
+3. ëª©í‘œì§€ì (7, 1, 8) ìœ¼ë¡œ ì´ë™í•˜ê¸°
+4. ëª©í‘œì§€ì  ë„ì°© íŒì •
+
+1 unit
+*/
+
+/*
+n í”„ë ˆì„ : ì´ˆë‹¹ në²ˆ ì‹¤í–‰í•˜ê¸°(ë³´ì—¬ì£¼ê¸°)
+20í”„ë ˆì„ : 1í”„ë ˆì„ ë³´ì—¬ì£¼ëŠ”ë° 0.05ì´ˆ ê±¸ë¦°ë‹¤
+FPS : 1ì´ˆì— (ì‹¤í–‰) ë³´ì—¬ì£¼ëŠ”ë° í”„ë ˆì„ ê°¯ìˆ˜
+
+speed = 20
 
 //unity
-Time.deltaTime : 1ÇÁ·¹ÀÓÀ» ½ÇÇàÇÏ´Âµ¥ °É¸®´Â ½Ã°£
+Time.deltaTime : 1í”„ë ˆì„ì„ ì‹¤í–‰í•˜ëŠ”ë° ê±¸ë¦¬ëŠ” ì‹œê°„
 
-PC1 : ¼º´ÉÀÌ ÁÁÀº ÄÄ
-10ÇÁ·¹ÀÓ - 1ÃÊ 10¸¸Å­ ÀÌµ¿
-Time.deltaTime °ª : 0.1f
-this.transform.position += new Vector3(0f , 0f , 1f) * Time.deltaTime * 20;
-this.transform.position += new Vector3(0f , 0f , 1f) * Time.deltaTime * 20;
-this.transform.position += new Vector3(0f , 0f , 1f) * Time.deltaTime * 20;
-this.transform.position += new Vector3(0f , 0f , 1f) * Time.deltaTime * 20;
-this.transform.position += new Vector3(0f , 0f , 1f) * Time.deltaTime * 20;
-this.transform.position += new Vector3(0f , 0f , 1f) * Time.deltaTime * 20;
-this.transform.position += new Vector3(0f , 0f , 1f) * Time.deltaTime * 20;
-this.transform.position += new Vector3(0f , 0f , 1f) * Time.deltaTime * 20;
-this.transform.position += new Vector3(0f , 0f , 1f) * Time.deltaTime * 20;
-this.transform.position += new Vector3(0f , 0f , 1f) * Time.deltaTime * 20;
-
-PC2 : ¼º´ÉÀÌ ³ª»Û ÄÄ
-2ÇÁ·¹ÀÓ - 1ÃÊ 2¸¸Å­ ÀÌµ¿
-Time.deltaTime °ª : 0.5f
-this.transform.position += new Vector3(0f , 0f , 1f) * Time.deltaTime * 20;
-this.transform.position += new Vector3(0f , 0f , 1f) * Time.deltaTime * 20;
- 
+PC1 : ì„±ëŠ¥ì´ ì¢‹ì€ ì»´
+10í”„ë ˆì„  - 1ì´ˆ 10 ë§Œí¼ ì´ë™ (Time.deltaTime ë¥¼ ê³„ì‚° ì•ˆí• ë•Œ)
+Time.deltaTime ê°’ : 0.1f 
+this.transform.position +=  new Vector3(0f, 0f, 1f) * Time.deltaTime * 20;
+this.transform.position +=  new Vector3(0f, 0f, 1f) * Time.deltaTime * 20;
+this.transform.position +=  new Vector3(0f, 0f, 1f) * Time.deltaTime * 20;
+this.transform.position +=  new Vector3(0f, 0f, 1f) * Time.deltaTime * 20;
+this.transform.position +=  new Vector3(0f, 0f, 1f) * Time.deltaTime * 20;
+this.transform.position +=  new Vector3(0f, 0f, 1f) * Time.deltaTime * 20;
+this.transform.position +=  new Vector3(0f, 0f, 1f) * Time.deltaTime * 20;
+this.transform.position +=  new Vector3(0f, 0f, 1f) * Time.deltaTime * 20;
+this.transform.position +=  new Vector3(0f, 0f, 1f) * Time.deltaTime * 20;
+this.transform.position +=  new Vector3(0f, 0f, 1f) * Time.deltaTime * 20;
 
 
+PC2 : ì„±ëŠ¥ì´ ë‚˜ìœ ì»´ - í”„ë ˆì„ ì €í•˜, ë“œë
+2í”„ë ˆì„  - 1ì´ˆ 2 ë§Œí¼ ì´ë™
+Time.deltaTime ê°’ : 0.5f 
+this.transform.position +=  new Vector3(0f, 0f, 1f) * Time.deltaTime * 20;
+this.transform.position +=  new Vector3(0f, 0f, 1f) * Time.deltaTime * 20;
 
-
-1. ¾Õ,µÚ,ÁÂ,¿ì·Î ÀÌµ¿ÇÏ±â
-2. 5ÀÇ ¼Óµµ·Î ÀÌµ¿ÇÏ±â
-3. ¸ñÇ¥ÁöÁ¡( 7,1,8 )
-  4.¸ñÇ¥ÁöÁ¡ µµÂø ÆÇÁ¤
-  
- 
- */
+ë°©í–¥ * ì†ë„ *  Time.deltaTime
+*/

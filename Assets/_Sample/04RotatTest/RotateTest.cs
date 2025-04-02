@@ -4,64 +4,77 @@ namespace Sample
 {
     public class RotateTest : MonoBehaviour
     {
-        //ÇÊµå
+        //í•„ë“œ
         private float x;
-
-
-        //È¸Àü¼Óµµ
-        public float trunSpeed = 5f;
-
-        //ÀÌµ¿¼Óµµ
+        //íšŒì „ì†ë„
+        public float turnSpeed = 5f;
+        //ì´ë™ì†ë„
         public float moveSpeed = 5f;
+
+        //íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸
+        public Transform target;
 
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            this.transform.rotation = Quaternion.Euler(90f, 0f, 0f); //xÃà È¸Àû
-            this.transform.rotation = Quaternion.Euler(0f, 90f, 0f); //yÃà È¸Àü
-            this.transform.rotation = Quaternion.Euler(0f, 0f, 90f); //zÃà È¸Àü
+            //this.transform.rotation = Quaternion.Euler(90f, 0f, 0f);    //xì¶• íšŒì „
+            //this.transform.rotation = Quaternion.Euler(0f, 90f, 0f);    //yì¶• íšŒì „
+            //this.transform.rotation = Quaternion.Euler(0f, 0f, 90f);    //zì¶• íšŒì „
         }
 
         // Update is called once per frame
         void Update()
         {
-             x += 1;
+            //x += 1;
+            //yì¶• ê¸°ì¤€ìœ¼ë¡œ +íšŒì „í•˜ê¸°
+            //this.transform.rotation = Quaternion.Euler(0f, x, 0f);
+            //xì¶• ê¸°ì¤€ìœ¼ë¡œ +íšŒì „í•˜ê¸°
+            //this.transform.rotation = Quaternion.Euler(x, 0f, 0f);
+            //zì¶• ê¸°ì¤€ìœ¼ë¡œ +íšŒì „í•˜ê¸°
+            //this.transform.rotation = Quaternion.Euler(0f, 0f, x);
 
-            //yÃà ±âÁØÀ¸·Î +È¸Àü
-            //  this.transform.rotation = Quaternion.Euler(0f, x, 0f);
-            //xÃà ±âÁØÀ¸·Î +È¸Àü
-            // this.transform.rotation = Quaternion.Euler(x, 0f, 0f);
-            //zÃà ±âÁØÀ¸·Î +È¸Àü
-            // this.transform.rotation = Quaternion.Euler(0f, 0f, x);
+            //yì¶• ê¸°ì¤€ìœ¼ë¡œ ì†ë„ 5ë¡œ íšŒì „í•˜ê¸°
+            //x += Time.deltaTime * 5;
+            //this.transform.rotation = Quaternion.Euler(0f, x, 0f);
 
-            //yÃà ±âÁØÀ¸·Î ¼Óµµ 5·Î È¸ÀüÇÏ±â
-            // x += Time.deltaTime * 5;
-            // this.transform.rotation = Quaternion.Euler(0f, x, 0f);
+            //yì¶• ê¸°ì¤€ìœ¼ë¡œ ì†ë„ 5ë¡œ íšŒì „í•˜ê¸° - ìì „
+            //this.transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed);
+            //íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ ì¤‘ì‹¬ìœ¼ë¡œ íšŒì „í•˜ê¸° - ê³µì „
+            //transform.RotateAround(target.transform.position, Vector3.up, 20 * Time.deltaTime);
 
-            //yÃà ±âÁØÀ¸·Î ¼Óµµ 5·Î È¸ÀüÇÏ±â
-            // this.transform.Rotate(Vector3.up * Time.deltaTime * Time.turnSpeed);
+            //íƒ€ê²Ÿ ë°©í–¥ìœ¼ë¡œ íšŒì „í•˜ê¸°
+            //Vector3 dir = target.position - this.transform.position;
+            //ë°©í–¥ ë²¡í„°ë¡œ ë¶€í„° ê·¸ìª½ ë°©í–¥ì„ ë°”ë¼ë³´ëŠ” íšŒì „ê°’ êµ¬í•˜ê¸°
+            //Quaternion targetRotation = Quaternion.LookRotation(dir);
+            //transform.rotation = targetRotation;
+            //Quaternion lookRotation = Quaternion.Lerp(this.transform.rotation, targetRotation, Time.deltaTime * turnSpeed);
+            //Yì¶• ì—°ì‚°ì„ ìœ„í•´ Euler(ì˜¤ì¼ëŸ¬)ê°’ ì–»ì–´ì˜¤ê¸°
+            //Vector3 eulerRotation = lookRotation.eulerAngles; //eulerRotation.x, eulerRotation.y, eulerRotation.z
+            //Euler(ì˜¤ì¼ëŸ¬)ê°’ ìœ¼ë¡œ Quaternion(ì¿¼í„°ë‹ˆì–¸) ê°’ êµ¬í•˜ê¸°
+            //this.transform.rotation = Quaternion.Euler(0f, eulerRotation.y, 0f);
 
-            //Å¸°Ù ¹æÇâÀ¸·Î È¸ÀüÇÏ±â
-            // Vector3 dir = target.position - this.transform.position;
-
-            //¹æÇâ º¤ÅÍ·Î ºÎÅÍ ±×ÂÊ ¹æÇâÀ» ¹Ù¶óº¸´Â È¸Àü°ª ±¸ÇÏ±â
-            //  Quaternion targetRotation = Quaternion.LookRotation(dir);
-
-            //  Quaternion lookRotation = Quaternion.Lerp(this.transform.rotation, targetRotation,Time.deltaTime * trunSpeed);
-            //  this.transform.rotation = lookRotation.eulerAngles;
-            // this.transform.rotation = Quaternion.Euler(0f, eulerRotation.y, 0f);
-
-            //È¸Àü+ÀÌµ¿
-            //Å¸°Ù ¹æÇâ ±¸ÇÏ±â
-          //  Vector3 dir = target.position - this.transform.position;
-            //¹æÇâ º¤ÅÍ·ÎºÎÅÍ ±×ÂÊ ¹æÇâÀ» ¹Ù¶óº¸´Â È¸Àü°ª ±¸ÇÏ±â
-           // this.transform.rotation = Quaternion.LookRotation(dir);
-
+            //íšŒì „ + ì´ë™
+            //íƒ€ê²Ÿ ë°©í–¥ êµ¬í•˜ê¸°
+            Vector3 dir = target.position - this.transform.position;
+            //ë°©í–¥ ë²¡í„°ë¥¼ ë°”ë¼ë³´ëŠ” íšŒì „ê°’ ì ìš©í•˜ê¸°
+            this.transform.rotation = Quaternion.LookRotation(dir);
             //this.transform.Translate(dir.normalized * Time.deltaTime * moveSpeed, Space.World);
-        
-
-        
+            //this.transform.Translate(dir.normalized * Time.deltaTime * moveSpeed, Space.Self);
         }
     }
 }
+
+
+/*
+Quaternion(ì¿¼í„°ë‹ˆì–¸)
+Euler(ì˜¤ì¼ëŸ¬)
+
+[1] Euler(ì˜¤ì¼ëŸ¬)ê°’ì—ì„œ Quaternion(ì¿¼í„°ë‹ˆì–¸) ê°’ êµ¬í•˜ê¸°
+3ìë¦¬ì—ì„œ 4ìë¦¬ê°’ êµ¬í•˜ê¸°
+Quaternion(ì¿¼í„°ë‹ˆì–¸) ê°’ = Quaternion.Euler(Euler x, Euler y, Euler z)
+
+[2] Quaternion(ì¿¼í„°ë‹ˆì–¸) ê°’ì—ì„œ Euler(ì˜¤ì¼ëŸ¬)ê°’ êµ¬í•˜ê¸°
+4ìë¦¬ì—ì„œ 3ìë¦¬ê°’ êµ¬í•˜ê¸°
+Vector3 angles = Quaternion(transform.rotation).eulerAngles;
+*/
